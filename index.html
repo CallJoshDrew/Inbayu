@@ -18,38 +18,56 @@
         .chart-container {
             position: relative;
             width: 100%;
-            height: 250px; /* Base height for mobile */
-            max-width: 400px; /* Base max-width for mobile */
+            height: 250px; /* Default base height for OTHER charts on mobile */
+            max-width: 400px; /* Default base max-width for OTHER charts on mobile */
             margin-left: auto;
             margin-right: auto;
         }
 
-        /* Specific height for Radar Chart on mobile */
+        /* Base styles for the radar chart container to ensure proper initial setup */
         #radarChartWrapper .chart-container {
-            height: 525px; /* Increased by 50% for mobile radar chart (350 * 1.5) */
-            max-width: 95%; /* Keep wider on mobile for better fit */
+            width: 100%; /* Ensure it takes full width of its parent card */
+            margin-left: auto;
+            margin-right: auto;
+            /* Height will be defined by media queries below to ensure responsiveness */
         }
 
-        /* Tablet and larger */
+        /* Direct canvas styling: crucial for Chart.js responsiveness */
+        #radarChart {
+            height: 100%; /* Make canvas fill the height of its parent container */
+            width: 100%; /* Make canvas fill the width of its parent container */
+            display: block; /* Ensures proper block-level behavior for full width/height */
+        }
+
+
+        /* Media queries to control #radarChartWrapper .chart-container height */
+        /* Mobile specific adjustments for Radar Chart */
+        @media (max-width: 639px) { /* Only for screens smaller than sm breakpoint */
+            #radarChartWrapper .chart-container {
+                height: 800px; /* Specific height for mobile radar container */
+            }
+        }
+
+        /* Tablet and larger adjustments for ALL charts */
         @media (min-width: 640px) { /* sm breakpoint */
-            .chart-container {
+            .chart-container { /* Applies to other charts */
                 height: 350px;
                 max-width: 500px;
             }
-             #radarChartWrapper .chart-container {
-                height: 400px; /* Adjust radar chart for tablet */
+            #radarChartWrapper .chart-container {
+                height: 500px; /* Specific height for tablet radar container */
                 max-width: 550px;
             }
         }
 
-        /* Desktop and larger */
+        /* Desktop and larger adjustments for ALL charts */
         @media (min-width: 1024px) { /* lg breakpoint */
-            .chart-container {
+            .chart-container { /* Applies to other charts */
                 height: 400px;
-                max-width: 600px; /* Adjusted max-width for larger screens */
+                max-width: 600px;
             }
-             #radarChartWrapper .chart-container {
-                height: 450px; /* Adjust radar chart for desktop */
+            #radarChartWrapper .chart-container {
+                height: 600px; /* Specific height for desktop radar container */
                 max-width: 650px;
             }
         }
@@ -127,7 +145,7 @@
         Visualization Choices:
         -   Resort Comparison -> Radar Chart (Chart.js): Best for comparing multiple entities across multiple dimensions. Confirmed NO SVG.
         -   INBAYU Taglines -> Bar Chart (Chart.js): Best for direct comparison of items on specific metrics. Confirmed NO SVG.
-        -   Pearl Island Themes -> Donut Chart (Chart.js): Excellent for showing composition/proportion. Confirmed NO SVG.
+        -   Pearl Island Themes -> Donut Chart (Chart.js): Excellent for showing composition/proportional. Confirmed NO SVG.
         -   Pearl Island Journey -> HTML/CSS Flowchart: Clean, structured way to show a process without SVG/Mermaid. Confirmed NO SVG.
         -   Pearl Island Taglines -> Bubble Chart (Chart.js): Great for multi-variable relationship visualization, added for Pearl Island. Confirmed NO SVG.
         -   Semporna Tourist Preferences -> Bar Chart (Chart.js): Good for comparing discrete categories, updated with research data. Confirmed NO SVG.
@@ -140,14 +158,14 @@
 
         <header class="text-center my-8 md:my-16">
             <h1 class="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-black tracking-tight text-white uppercase">Crafting the <span class="text-[#FFA600]">Soul</span> of a Brand</h1>
-            <p class="mt-4 text-base sm:text-lg md:text-xl max-w-3xl mx-auto text-gray-300">An analysis of marketing taglines for INBAYU COLLECTION, the management entity for Pearl Island and Sipadan Kapalai Dive Resort. This infographic visualizes the power of words in shaping brand perception and identity across its portfolio.</p>
+            <p class="mt-4 text-base sm:text-lg md:text-xl max-w-3xl mx-auto text-gray-300 text-left">An analysis of marketing taglines for INBAYU COLLECTION, the management entity for Pearl Island and Sipadan Kapalai Dive Resort. This infographic visualizes the power of words in shaping brand perception and identity across its portfolio.</p>
         </header>
 
         <main>
             <section id="comparison" class="mb-12 md:mb-16">
                 <div class="card rounded-lg shadow-2xl p-6 md:p-8">
                     <h2 class="text-xl sm:text-2xl md:text-3xl font-bold text-center mb-2">A Tale of Three Identities</h2>
-                    <p class="text-sm sm:text-base text-center text-gray-300 max-w-2xl mx-auto mb-6 md:mb-8">INBAYU COLLECTION's overarching vision, and each of its managed resorts (Pearl Island, Sipadan Kapalai), communicate a distinct promise. This chart compares the overall effectiveness of their tagline suites across four key strategic pillars: emotional resonance, target audience appeal, brand alignment, and memorability.</p>
+                    <p class="text-sm sm:text-base text-left text-gray-300 max-w-2xl mx-auto mb-6 md:mb-8">INBAYU COLLECTION's overarching vision, and each of its managed resorts (Pearl Island, Sipadan Kapalai), communicate a distinct promise. This chart compares the overall effectiveness of their tagline suites across four key strategic pillars: emotional resonance, target audience appeal, brand alignment, and memorability.</p>
                     <div id="radarChartWrapper" class="chart-container">
                         <canvas id="radarChart"></canvas>
                     </div>
@@ -156,24 +174,24 @@
 
             <section id="inbayu" class="mb-12 md:mb-16">
                 <h2 class="text-2xl sm:text-3xl md:text-4xl font-bold text-center mb-4">INBAYU COLLECTION: Visionary Management</h2>
-                <p class="text-sm sm:text-base text-center text-gray-300 max-w-2xl mx-auto mb-6 md:mb-8">These taglines are crafted to articulate the core objective and vision of INBAYU COLLECTION as a management entity, setting a compelling tone for its portfolio of properties. They balance broad, welcoming messages with deep, emotional hooks, reflecting the collective aspirations of the collection.</p>
+                <p class="text-sm sm:text-base text-left text-gray-300 max-w-2xl mx-auto mb-6 md:mb-8">These taglines are crafted to articulate the core objective and vision of INBAYU COLLECTION as a management entity, setting a compelling tone for its portfolio of properties. They balance broad, welcoming messages with deep, emotional hooks, reflecting the collective aspirations of the collection.</p>
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8 items-center">
                     <div class="card rounded-lg shadow-2xl p-6 md:p-8">
-                        <h3 class="text-lg sm:text-xl md:text-2xl font-bold text-center mb-4">INBAYU Collection Tagline Appeal Analysis</h3>
-                        <p class="text-xs sm:text-sm text-center text-gray-400 mb-6">A comparison of the five taglines proposed for the INBAYU COLLECTION's overarching brand, rating their relative strength in generating a powerful emotional impact versus their effectiveness in appealing to a broad audience (e.g., potential partners, investors, and diverse travelers).</p>
+                        <h3 class="text-lg sm:text-xl md:text-2xl font-bold text-center mb-4">INBAYU COLLECTION Tagline Appeal Analysis</h3>
+                        <p class="text-xs sm:text-sm text-left text-gray-400 mb-6">A comparison of the five taglines proposed for the INBAYU COLLECTION's overarching brand, rating their relative strength in generating a powerful emotional impact versus their effectiveness in appealing to a broad audience (e.g., potential partners, investors, and diverse travelers).</p>
                         <div class="chart-container h-64 sm:h-80 md:h-96">
                             <canvas id="inbayuBarChart"></canvas>
                         </div>
                     </div>
                     <div class="text-center p-4">
                         <div class="stat-number">5</div>
-                        <div class="text-lg sm:text-xl md:text-2xl font-bold tracking-wider uppercase text-gray-300">Collection Taglines</div>
-                        <p class="mt-2 text-xs sm:text-sm text-gray-400">analyzed to define the brand's overarching narrative.</p>
+                        <div class="text-lg sm:text-xl md:text-2xl font-bold tracking-wider uppercase text-gray-300">COLLECTION Taglines</div>
+                        <p class="mt-2 text-xs sm:text-sm text-gray-400 text-left">analyzed to define the brand's overarching narrative.</p>
                     </div>
                 </div>
                 <div class="card rounded-lg shadow-2xl p-6 md:p-8 mt-6 md:mt-8">
-                    <h3 class="text-xl md:text-2xl font-bold text-center mb-4">Analysis of INBAYU Collection Taglines</h3>
-                    <p class="text-sm sm:text-base text-center text-gray-400 max-w-2xl mx-auto mb-6">Each tagline for the INBAYU COLLECTION is strategically designed to balance emotional resonance with broad appeal, shaping the overarching brand narrative.</p>
+                    <h3 class="text-xl md:text-2xl font-bold text-center mb-4">Analysis of INBAYU COLLECTION Taglines</h3>
+                    <p class="text-sm sm:text-base text-left text-gray-400 max-w-2xl mx-auto mb-6">Each tagline for the INBAYU COLLECTION is strategically designed to balance emotional resonance with broad appeal, shaping the overarching brand narrative.</p>
                     <div class="space-y-4 text-gray-300 text-left text-sm sm:text-base">
                         <p><strong class="text-[#BC5090]">"Your Story Unfolds, Where Semporna’s Natural Wonders Call"</strong>: This tagline has a strong emotional impact (8/10) by inviting personal narrative. Its broad appeal (7/10) lies in connecting individual journeys with the universal allure of nature, suitable for diverse travelers seeking unique experiences.</p>
                         <p><strong class="text-[#BC5090]">"Where Every Wave Carries a Story, and Every Sunset, a Myth"</strong>: This tagline excels in emotional impact (8/10), creating a poetic and mystical connection. Its broad appeal (6/10) is slightly more niche, targeting those who appreciate deeper meaning and sensory magic, but still resonates widely through its evocative imagery.</p>
@@ -186,29 +204,29 @@
 
             <section id="pearl-island" class="mb-12 md:mb-16">
                  <h2 class="text-2xl sm:text-3xl md:text-4xl font-bold text-center mb-4">Pearl Island</h2>
-                <p class="text-sm sm:text-base text-center text-gray-300 max-w-2xl mx-auto mb-6 md:mb-8">Pearl Island positions itself as an exclusive sanctuary of myth and renewal. Its taglines are introspective, promising transformation and a deep connection to legend.</p>
+                <p class="text-sm sm:text-base text-left text-gray-300 max-w-2xl mx-auto mb-6 md:mb-8">Pearl Island positions itself as an exclusive sanctuary of myth and renewal. Its taglines are introspective, promising transformation and a deep connection to legend.</p>
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8 items-center">
                      <div class="card rounded-lg shadow-2xl p-6 md:p-8 order-2 md:order-1 h-[520px] sm:h-[600px] lg:h-[700px] flex flex-col justify-center">
                         <h3 class="text-lg sm:text-xl md:text-2xl font-bold text-center mb-4">Thematic Focus</h3>
-                        <p class="text-xs sm:text-sm text-center text-gray-400 mb-6">The brand's messaging is built on three core pillars. This chart shows the proportional focus of its taglines on the ideas of myth, personal renewal, and exclusive seclusion.</p>
+                        <p class="text-xs sm:text-sm text-left text-gray-400 mb-6">The brand's messaging is built on three core pillars. This chart shows the proportional focus of its taglines on the ideas of myth, personal renewal, and exclusive seclusion.</p>
                         <div class="chart-container h-64 sm:h-80 md:h-96">
                             <canvas id="pearlDonutChart"></canvas>
                         </div>
                     </div>
                     <div class="card rounded-lg shadow-2xl p-6 md:p-8 order-1 md:order-2 h-[520px] sm:h-[600px] lg:h-[700px] flex flex-col justify-center">
                          <h3 class="text-lg sm:text-xl md:text-2xl font-bold text-center mb-4">The Guest's Journey</h3>
-                         <p class="text-xs sm:text-sm text-center text-gray-400 mb-6">The taglines suggest a transformative path for every visitor.</p>
-                        <div class="flex flex-col items-center justify-center space-y-3 sm:space-y-4 text-center">
+                         <p class="text-xs sm:text-sm text-left text-gray-400 mb-6">The taglines suggest a transformative path for every visitor.</p>
+                        <div class="flex flex-col items-center justify-center space-y-3 sm:space-y-4 text-left">
                             <div class="p-3 sm:p-4 border-2 border-dashed border-[#58508D] rounded-lg w-full max-w-sm">
                                 <div class="text-base sm:text-lg font-bold text-white">1. Encounter the Myth</div>
                                 <p class="text-xs sm:text-sm text-gray-300">Arrive at a hidden sanctuary steeped in legend.</p>
                             </div>
-                            <div class="text-3xl sm:text-4xl font-black flow-arrow transform rotate-90 md:rotate-0">→</div>
+                            <div class="text-3xl sm:text-4xl font-black flow-arrow transform rotate-90 md:rotate-0 text-center">→</div>
                             <div class="p-3 sm:p-4 border-2 border-dashed border-[#BC5090] rounded-lg w-full max-w-sm">
                                  <div class="text-base sm:text-lg font-bold text-white">2. Live the Experience</div>
                                 <p class="text-xs sm:text-sm text-gray-300">Engage in adventure and find timeless stillness.</p>
                             </div>
-                             <div class="text-3xl sm:text-4xl font-black flow-arrow transform rotate-90 md:rotate-0">→</div>
+                             <div class="text-3xl sm:text-4xl font-black flow-arrow transform rotate-90 md:rotate-0 text-center">→</div>
                             <div class="p-3 sm:p-4 border-2 border-dashed border-[#FF6361] rounded-lg w-full max-w-sm">
                                  <div class="text-base sm:text-lg font-bold text-white">3. Leave Renewed</div>
                                 <p class="text-xs sm:text-sm text-gray-300">Depart with stories that have rewritten you.</p>
@@ -219,17 +237,17 @@
                 <!-- New Bubble Chart for Pearl Island Taglines -->
                 <div class="card rounded-lg shadow-2xl p-6 md:p-8 mt-6 md:mt-8">
                     <h3 class="text-xl md:text-2xl font-bold text-center mb-4">Pearl Island Tagline Positioning</h3>
-                    <p class="text-sm sm:text-base text-center text-gray-400 max-w-2xl mx-auto mb-8">This chart analyzes Pearl Island's taglines based on their emphasis on Seclusion (X-axis), connection to Myth & Legend (Y-axis), and the prominence of Personal Renewal/Transformation (bubble size).</p>
+                    <p class="text-sm sm:text-base text-left text-gray-400 max-w-2xl mx-auto mb-8">This chart analyzes Pearl Island's taglines based on their emphasis on Seclusion (X-axis), connection to Myth & Legend (Y-axis), and the prominence of Personal Renewal/Transformation (bubble size).</p>
                     <div class="chart-container bubble-chart-container">
                         <canvas id="pearlBubbleChart"></canvas>
                     </div>
-                    <p class="text-center text-gray-300 max-w-2xl mx-auto mt-6 text-sm sm:text-base">
+                    <p class="text-left text-gray-300 max-w-2xl mx-auto mt-6 text-sm sm:text-base">
                         <strong class="text-[#BC5090]">'A Hidden Sanctuary Where Myths Become Memories'</strong> (magenta bubble) strongly emphasizes both <strong>Seclusion</strong> and <strong>Mythical Connection</strong>, making it ideal for guests seeking an exclusive escape where ancient stories come to life. The moderate size indicates a balanced focus on personal transformation.
                     </p>
-                    <p class="text-center text-gray-300 max-w-2xl mx-auto mt-4 text-sm sm:text-base">
+                    <p class="text-left text-gray-300 max-w-2xl mx-auto mt-4 text-sm sm:text-base">
                         <strong class="text-[#FF6361]">'The Island Where Stories Rewrite You'</strong> (coral bubble) has a high emphasis on <strong>Personal Renewal/Transformation</strong> (largest bubble), with a slightly lower, but still significant, mythical connection and seclusion. It appeals to those actively seeking profound change and growth through their adventure and experiences on the island.
                     </p>
-                    <p class="text-center text-gray-300 max-w-2xl mx-auto mt-4 text-sm sm:text-base">
+                    <p class="text-left text-gray-300 max-w-2xl mx-auto mt-4 text-sm sm:text-base">
                         <strong class="text-[#FFA600]">'A Hidden Sanctuary of Myth and Renewal'</strong> (gold bubble) balances <strong>Seclusion</strong> with <strong>Mythical Connection</strong> and a strong emphasis on <strong>Renewal</strong>. This tagline effectively communicates a holistic experience of exclusive retreat, historical depth, and personal rejuvenation, appealing to a broad range of luxury travelers.
                     </p>
                 </div>
@@ -237,32 +255,32 @@
 
             <section id="sipadan-kapalai" class="mb-12 md:mb-16">
                 <h2 class="text-2xl sm:text-3xl md:text-4xl font-bold text-center mb-4">Sipadan Kapalai Dive Resort</h2>
-                <p class="text-sm sm:text-base text-center text-gray-300 max-w-2xl mx-auto mb-6 md:mb-8">This is a brand for the discerning diver and storyteller. The taglines move beyond simple adventure to promise an intimate, almost theatrical, encounter with the ocean's hidden wonders, aligning with what its unique guests seek.</p>
+                <p class="text-sm sm:text-base text-left text-gray-300 max-w-2xl mx-auto mb-6 md:mb-8">This is a brand for the discerning diver and storyteller. The taglines move beyond simple adventure to promise an intimate, almost theatrical, encounter with the ocean's hidden wonders, aligning with what its unique guests seek.</p>
 
                 <div class="card rounded-lg shadow-2xl p-6 md:p-8 mb-6 md:mb-8">
                     <h3 class="text-xl md:text-2xl font-bold text-center mb-4">Key Motivations for Tourists Visiting Semporna</h3>
-                    <p class="text-sm sm:text-base text-center text-gray-400 max-w-2xl mx-auto mb-8">Based on recent tourist feedback and regional analysis, the primary drivers for visitors to Semporna and its surrounding islands like Sipadan Kapalai are deeply rooted in unique natural and cultural experiences, as well as the value offered.</p>
+                    <p class="text-sm sm:text-base text-left text-gray-400 max-w-2xl mx-auto mb-8">Based on recent tourist feedback and regional analysis, the primary drivers for visitors to Semporna and its surrounding islands like Sipadan Kapalai are deeply rooted in unique natural and cultural experiences, as well as the value offered.</p>
                     <div class="chart-container">
                         <canvas id="touristSeekChart"></canvas>
                     </div>
-                    <p class="text-sm sm:text-base text-center text-gray-300 max-w-2xl mx-auto mt-4">
+                    <p class="text-sm sm:text-base text-left text-gray-300 max-w-2xl mx-auto mt-4">
                         The data on this chart represents a synthesis of recent tourist reviews and market analysis for Semporna, with scores from 1 (low importance) to 10 (high importance). The high scores for <strong>Diving & Marine Life Excellence</strong> and <strong>Nature, Scenery & Island Exploration</strong> underscore Semporna's global reputation. The strong rating for <strong>Affordable Luxury/Value</strong> highlights a key competitive advantage, while <strong>Adventure & Water Sports</strong> (beyond diving) and <strong>Cultural Experiences & Local Charm</strong> round out the holistic appeal.
                     </p>
                 </div>
 
                 <div class="card rounded-lg shadow-2xl p-6 md:p-8">
                     <h3 class="text-xl md:text-2xl font-bold text-center mb-4">Positioning & Appeal Matrix</h3>
-                     <p class="text-sm sm:text-base text-center text-gray-400 max-w-2xl mx-auto mb-8">This chart analyzes the three taglines across multiple dimensions. The horizontal axis represents appeal (from broad to highly niche), the vertical axis indicates the level of luxury conveyed, and the size of each bubble reflects its overall storytelling power.</p>
+                     <p class="text-sm sm:text-base text-left text-gray-400 max-w-2xl mx-auto mb-8">This chart analyzes the three taglines across multiple dimensions. The horizontal axis represents appeal (from broad to highly niche), the vertical axis indicates the level of luxury conveyed, and the size of each bubble reflects its overall storytelling power.</p>
                     <div class="chart-container bubble-chart-container">
                         <canvas id="kapalaiBubbleChart"></canvas>
                     </div>
-                    <p class="text-center text-gray-300 max-w-2xl mx-auto mt-6 text-sm sm:text-base">
+                    <p class="text-left text-gray-300 max-w-2xl mx-auto mt-6 text-sm sm:text-base">
                         <strong class="text-[#BC5090]">'Not Just Depth—A Rediscovery of the Ocean’s Pulse'</strong> (magenta bubble) is positioned with moderate niche appeal and luxury. It directly taps into the desire for <strong>Diving & Marine Life Excellence</strong> and <strong>Nature, Scenery & Island Exploration</strong>, by promising a profound connection with the underwater world beyond just a basic dive, appealing to those who seek deep immersion.
                     </p>
-                    <p class="text-center text-gray-300 max-w-2xl mx-auto mt-4 text-sm sm:text-base">
+                    <p class="text-left text-gray-300 max-w-2xl mx-auto mt-4 text-sm sm:text-base">
                         <strong class="text-[#FF6361]">'Beyond Mystery—Where the Ocean’s Wonder Embraces You'</strong> (coral bubble) sits with a broader appeal but a strong luxury feel. It caters to the <strong>Adventure & Water Sports</strong> seekers and those desiring <strong>Nature, Scenery & Island Exploration</strong> by framing encounters with marine life as a welcoming, wondrous experience, perfect for luxury travelers who want awe without austerity.
                     </p>
-                    <p class="text-center text-gray-300 max-w-2xl mx-auto mt-4 text-sm sm:text-base">
+                    <p class="text-left text-gray-300 max-w-2xl mx-auto mt-4 text-sm sm:text-base">
                         <strong class="text-[#FFA600]">'Sipadan Kapalai: The Hidden Theatre of the Sea'</strong> (gold bubble) has the highest niche appeal and luxury positioning. This tagline is precisely crafted for those who prioritize <strong>Diving & Marine Life Excellence</strong> and <strong>Scenic Beauty & Photography</strong>, inviting them to an exclusive, theatrical display of nature's artistry. It speaks to the desire for unparalleled, high-value experiences that are truly unique to the destination.
                     </p>
                 </div>
@@ -270,7 +288,7 @@
 
             <section id="conclusion" class="mb-8">
                 <h2 class="text-2xl sm:text-3xl md:text-4xl font-bold text-center mb-4">Strategic Recommendations</h2>
-                <p class="text-sm sm:text-base text-center text-gray-300 max-w-2xl mx-auto mb-8">Based on the analysis, the following taglines are recommended for the INBAYU COLLECTION's overarching brand and for each of its managed resorts, to maximize market impact and ensure authentic brand representation.</p>
+                <p class="text-sm sm:text-base text-left text-gray-300 max-w-2xl mx-auto mb-8">Based on the analysis, the following taglines are recommended for the INBAYU COLLECTION's overarching brand and for each of its managed resorts, to maximize market impact and ensure authentic brand representation.</p>
                 <div class="overflow-x-auto">
                     <div class="card rounded-lg shadow-2xl p-4 md:p-6">
                         <table class="w-full text-left">
@@ -283,9 +301,9 @@
                             </thead>
                             <tbody>
                                 <tr class="border-b border-[#58508D]/50">
-                                    <td class="p-2 sm:p-4 font-bold align-top text-sm sm:text-base">INBAYU COLLECTION (Management Brand)</td>
+                                    <td class="p-2 sm:p-4 font-bold align-top text-sm sm:text-base">INBAYU COLLECTION</td>
                                     <td class="p-2 sm:p-4 font-semibold text-[#FFA600] align-top text-sm sm:text-base">"One Journey, a Lifetime of Memories in Semporna"</td>
-                                    <td class="p-2 sm:p-4 text-white align-top text-xs sm:text-sm">This tagline offers a strong emotional promise of lasting significance ("a Lifetime of Memories"), appealing to a wide audience seeking profound and memorable travel experiences. It's simple, universally understood, and resonates with the desire for meaningful journeys, positioning Semporna as a destination that transforms fleeting moments into cherished chapters.</td>
+                                    <td class="p-2 sm:p-4 text-white align-top text-xs sm:text-sm">This tagline offers a strong emotional promise of lasting significance ("a Lifetime of Memories"), appealing to a wide audience seeking profound and memorable travel experiences. Its inclusion of "Semporna" directly links the collection to the renowned destination, fostering top-of-mind-recall and positioning it as the definitive choice for those seeking meaningful journeys in the region.</td>
                                 </tr>
                                 <tr class="border-b border-[#58508D]/50">
                                     <td class="p-2 sm:p-4 font-bold align-top text-sm sm:text-base">Pearl Island</td>
@@ -398,6 +416,9 @@
             },
             options: {
                 ...defaultChartOptions,
+                layout: {
+                    padding: 0
+                },
                 scales: {
                     r: {
                         angleLines: { color: 'rgba(255, 255, 255, 0.2)' },
@@ -429,7 +450,7 @@
                 datasets: [
                     {
                         label: 'Emotional Impact',
-                        data: [8, 8, 7, 8, 6], /* Changed 'Every Wave Carries a Story, Every Sunset, a Myth' Emotional Impact from 9 to 8 */
+                        data: [8, 8, 7, 8, 6],
                         backgroundColor: chartColors.magenta,
                         borderColor: chartColors.magenta,
                         borderWidth: 1
@@ -464,7 +485,8 @@
                             font: {
                                 size: 14
                             },
-                            boxWidth: 20
+                            boxWidth: 20,
+                            padding: 5
                         },
                         align: 'start'
                     },
