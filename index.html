@@ -26,8 +26,8 @@
 
         /* Specific height for Radar Chart on mobile */
         #radarChartWrapper .chart-container {
-            height: 350px; /* Increased for mobile radar chart */
-            max-width: 95%; /* Make it wider on mobile */
+            height: 525px; /* Increased by 50% for mobile radar chart (350 * 1.5) */
+            max-width: 95%; /* Keep wider on mobile for better fit */
         }
 
         /* Tablet and larger */
@@ -76,7 +76,20 @@
             background-color: rgba(255, 255, 255, 0.05);
             backdrop-filter: blur(10px);
             border: 1px solid rgba(255, 255, 255, 0.1);
+            /* Enhanced shadow for better visibility, especially on dark background */
+            box-shadow: 0px 8px 20px rgba(0, 0, 0, 0.7); /* Stronger shadow for mobile/default */
         }
+        @media (min-width: 640px) { /* sm breakpoint */
+            .card {
+                box-shadow: 0px 10px 25px rgba(0, 0, 0, 0.5); /* Slightly less intense on tablet */
+            }
+        }
+        @media (min-width: 1024px) { /* lg breakpoint */
+            .card {
+                box-shadow: 0px 12px 30px rgba(0, 0, 0, 0.4); /* More subtle on desktop */
+            }
+        }
+
         .stat-number {
             font-weight: 900;
             font-size: 3rem; /* Adjusted for mobile */
