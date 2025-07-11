@@ -3,680 +3,219 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Resort Tagline Strategy Infographic</title>
+    <title>Marketing Tagline Report</title>
+    <!-- Tailwind CSS CDN for styling -->
     <script src="https://cdn.tailwindcss.com"></script>
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&display=swap" rel="stylesheet">
     <style>
+        /* Custom styles for a more professional and clean design */
         body {
             font-family: 'Inter', sans-serif;
-            background-color: #003F5C;
-            color: #F9F9F9;
+            background-color: #f0f2f5; /* Soft light gray background */
+            color: #333333; /* Darker text for better readability */
+            line-height: 1.8; /* Improved line height for readability */
+            font-size: 1.1rem; /* Increased base font size */
         }
-        .chart-container {
-            position: relative;
-            width: 100%;
-            height: 250px; /* Default base height for OTHER charts on mobile */
-            max-width: 400px; /* Default base max-width for OTHER charts on mobile */
-            margin-left: auto;
-            margin-right: auto;
+        .container {
+            max-width: 1000px; /* Slightly wider container */
+            margin: 2.5rem auto; /* More vertical margin */
+            padding: 2rem; /* Increased padding */
+            background-color: #ffffff;
+            border-radius: 1rem; /* More pronounced rounded corners */
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08); /* Softer, more professional shadow */
         }
-
-        /* Base styles for the radar chart container to ensure proper initial setup */
-        #radarChartWrapper .chart-container {
-            width: 100%; /* Ensure it takes full width of its parent card */
-            margin-left: auto;
-            margin-right: auto;
-            /* Height will be defined by media queries below to ensure responsiveness */
+        h1, h2, h3, h4 {
+            color: #2d3748; /* Deep charcoal for headings */
+            margin-bottom: 1.2rem; /* Consistent bottom margin for headings */
+            line-height: 1.3;
         }
-
-        /* Direct canvas styling: crucial for Chart.js responsiveness */
-        #radarChart {
-            height: 100%; /* Make canvas fill the height of its parent container */
-            width: 100%; /* Make canvas fill the width of its parent container */
-            display: block; /* Ensures proper block-level behavior for full width/height */
+        h1 {
+            font-size: 3.2rem; /* Increased H1 font size */
+            font-weight: 800; /* Made H1 bolder */
+            text-align: center;
+            margin-bottom: 3rem; /* Increased bottom margin for H1 */
+            letter-spacing: -0.02em; /* Slightly tighter letter spacing */
         }
-
-
-        /* Media queries to control #radarChartWrapper .chart-container height */
-        /* Mobile specific adjustments for Radar Chart */
-        @media (max-width: 639px) { /* Only for screens smaller than sm breakpoint */
-            #radarChartWrapper .chart-container {
-                height: 800px; /* Specific height for mobile radar container */
-            }
+        h2 {
+            font-size: 2.4rem; /* Larger section titles */
+            font-weight: 600;
+            margin-top: 3rem; /* More space above new sections */
+            padding-bottom: 0.75rem;
+            border-bottom: 1px solid #cbd5e0; /* Slightly darker border for distinction */
+            color: #4a5568; /* Muted blue-gray for section titles */
         }
-
-        /* Tablet and larger adjustments for ALL charts */
-        @media (min-width: 640px) { /* sm breakpoint */
-            .chart-container { /* Applies to other charts */
-                height: 350px;
-                max-width: 500px;
-            }
-            #radarChartWrapper .chart-container {
-                height: 500px; /* Specific height for tablet radar container */
-                max-width: 550px;
-            }
+        h3 {
+            font-size: 1.8rem; /* Increased h3 font size */
+            font-weight: 600;
+            margin-top: 2rem;
+            color: #4a5568;
         }
-
-        /* Desktop and larger adjustments for ALL charts */
-        @media (min-width: 1024px) { /* lg breakpoint */
-            .chart-container { /* Applies to other charts */
-                height: 400px;
-                max-width: 600px;
-            }
-            #radarChartWrapper .chart-container {
-                height: 600px; /* Specific height for desktop radar container */
-                max-width: 650px;
-            }
+        h4 {
+            font-size: 1.5rem; /* Increased h4 font size */
+            font-weight: 600;
+            margin-top: 1.2rem;
+            color: #4a5568;
         }
-
-        /* Specific styling for the bubble chart container to give it more space */
-        .bubble-chart-container {
-            height: 350px; /* Base height for mobile bubble */
-            max-width: 500px; /* Base max-width for mobile bubble */
+        .section-box {
+            background-color: #fdfdfe; /* Very subtle off-white for section boxes */
+            border: 1px solid #e2e8f0; /* Light, subtle border */
+            border-radius: 0.75rem;
+            padding: 2rem;
+            margin-bottom: 2.5rem;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05); /* Very light inner shadow */
         }
-        @media (min-width: 640px) { /* sm breakpoint */
-            .bubble-chart-container {
-                height: 450px;
-                max-width: 600px;
-            }
+        .remark, .action, .explanation {
+            background-color: #e0f2fe; /* Soft light blue for remarks/actions */
+            border-left: 5px solid #38b2ac; /* Teal accent border */
+            padding: 1.2rem;
+            margin-top: 1rem;
+            border-radius: 0.5rem;
+            font-size: 1rem; /* Adjusted font size for these blocks */
+            line-height: 1.6;
         }
-        @media (min-width: 1024px) { /* lg breakpoint */
-            .bubble-chart-container {
-                height: 500px; /* Further adjust for larger screens */
-                max-width: 700px; /* Increased max-width for better legend display */
-            }
+        .explanation {
+            background-color: #e6ffed; /* Soft light green for explanations */
+            border-left-color: #48bb78; /* Green accent border */
         }
-
-        .card {
-            background-color: rgba(255, 255, 255, 0.05);
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            /* Enhanced shadow for better visibility, especially on dark background */
-            box-shadow: 0px 8px 20px rgba(0, 0, 0, 0.7); /* Stronger shadow for mobile/default */
+        ul {
+            list-style-type: none; /* Ensure default bullet points are removed */
+            padding-left: 0; /* Remove default padding */
         }
-        @media (min-width: 640px) { /* sm breakpoint */
-            .card {
-                box-shadow: 0px 10px 25px rgba(0, 0, 0, 0.5); /* Slightly less intense on tablet */
-            }
+        li {
+            margin-bottom: 1.5rem; /* More space between list items */
         }
-        @media (min-width: 1024px) { /* lg breakpoint */
-            .card {
-                box-shadow: 0px 12px 30px rgba(0, 0, 0, 0.4); /* More subtle on desktop */
-            }
+        p {
+            margin-bottom: 1rem; /* Add some spacing to paragraphs */
         }
-
-        .stat-number {
-            font-weight: 900;
-            font-size: 3rem; /* Adjusted for mobile */
-            color: #FFA600;
-            line-height: 1;
-        }
-        @media (min-width: 640px) {
-            .stat-number {
-                font-size: 4rem;
-            }
-        }
-        @media (min-width: 1024px) {
-            .stat-number {
-                font-size: 5rem;
-            }
-        }
-        .flow-arrow {
-            color: #FFA600;
+        p:last-child {
+            margin-bottom: 0; /* No margin after the last paragraph in a block */
         }
     </style>
 </head>
-<body class="antialiased">
-    <div class="container mx-auto p-4 md:p-8">
+<body>
+    <div class="container">
+        <h1>Marketing Tagline Research Report</h1>
 
-        <header class="text-center my-8 md:my-16">
-            <h1 class="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-black tracking-tight text-white uppercase">Crafting the <span class="text-[#FFA600]">Soul</span> of a Brand</h1>
-            <p class="mt-4 text-base sm:text-lg md:text-xl max-w-3xl mx-auto text-gray-300 text-left">An analysis of marketing taglines for INBAYU COLLECTION, the management entity for Pearl Island and Sipadan Kapalai Dive Resort. This infographic visualizes the power of words in shaping brand perception and identity across its portfolio.</p>
-        </header>
+        <!-- First Section: Recap of our Previous Meeting -->
+        <div class="section-box">
+            <h2 class="text-blue-700">Section 1: Recap of Our Previous Meeting</h2>
 
-        <main>
-            <section id="comparison" class="mb-12 md:mb-16">
-                <div class="card rounded-lg shadow-2xl p-6 md:p-8">
-                    <h2 class="text-xl sm:text-2xl md:text-3xl font-bold text-center mb-2">A Tale of Three Identities</h2>
-                    <p class="text-sm sm:text-base text-left text-gray-300 max-w-2xl mx-auto mb-6 md:mb-8">INBAYU COLLECTION's overarching vision, and each of its managed resorts (Pearl Island, Sipadan Kapalai), communicate a distinct promise. This chart compares the overall effectiveness of their tagline suites across four key strategic pillars: emotional resonance, target audience appeal, brand alignment, and memorability.</p>
-                    <div id="radarChartWrapper" class="chart-container">
-                        <canvas id="radarChart"></canvas>
-                    </div>
+            <!-- INBAYU COLLECTION -->
+            <div class="mb-8 mt-10"> <!-- Added mt-10 for bottom margin before the first point -->
+                <h3 class="font-bold">1) INBAYU COLLECTION</h3>
+                <p class="text-lg mb-4">Chosen Tagline: "One Journey, a Lifetime of Memories in Semporna"</p>
+                <div class="remark">
+                    <p class="font-medium text-gray-700 mb-2">Remarks:</p>
+                    <p>The tagline should not be limited to Semporna, as the brand may expand to other destinations in the future. We need a concept that transcends a single location, allowing for seamless inclusion of new resorts under the INBAYU Collection.</p>
                 </div>
-            </section>
+                <div class="action">
+                    <p class="font-medium text-gray-700 mb-2">Action:</p>
+                    <p>Revise Tagline without the word Semporna</p>
+                </div>
+            </div>
 
-            <section id="inbayu" class="mb-12 md:mb-16">
-                <h2 class="text-2xl sm:text-3xl md:text-4xl font-bold text-center mb-4">INBAYU COLLECTION: Visionary Management</h2>
-                <p class="text-sm sm:text-base text-left text-gray-300 max-w-2xl mx-auto mb-6 md:mb-8">These taglines are crafted to articulate the core objective and vision of INBAYU COLLECTION as a management entity, setting a compelling tone for its portfolio of properties. They balance broad, welcoming messages with deep, emotional hooks, reflecting the collective aspirations of the collection.</p>
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8 items-center">
-                    <div class="card rounded-lg shadow-2xl p-6 md:p-8">
-                        <h3 class="text-lg sm:text-xl md:text-2xl font-bold text-center mb-4">INBAYU COLLECTION Tagline Appeal Analysis</h3>
-                        <p class="text-xs sm:text-sm text-left text-gray-400 mb-6">A comparison of the five taglines proposed for the INBAYU COLLECTION's overarching brand, rating their relative strength in generating a powerful emotional impact versus their effectiveness in appealing to a broad audience (e.g., potential partners, investors, and diverse travelers).</p>
-                        <div class="chart-container h-64 sm:h-80 md:h-96">
-                            <canvas id="inbayuBarChart"></canvas>
+            <!-- Pearl Island Resort -->
+            <div class="mb-8">
+                <h3 class="font-bold">2) Pearl Island Resort</h3>
+                <p class="text-lg mb-4">Chosen Tagline: "A Hidden Sanctuary Where Myths Become Memories"</p>
+                <div class="remark">
+                    <p class="font-medium text-gray-700 mb-2">Remarks:</p>
+                    <p>At Pearl Island Resort, we bring to life the enchanting legend of Princess Salamia—the Bum Bum Island princess who defied fate by escaping to Bohey Dulang, where she transformed into a fairy. Through interactive storytelling, art, and themed experiences, we invite guests to step into her world, where the moral ‘You decide your fate’ inspires courage and adventure. This narrative will deepen emotional connections with the resort, making every stay unforgettable while celebrating Sabah’s rich folklore.</p>
+                </div>
+                <div class="action">
+                    <p class="font-medium text-gray-700 mb-2">Action:</p>
+                    <p>Translate the chosen tagline to suitable Chinese words</p>
+                </div>
+            </div>
+
+            <!-- Sipadan Kapalai Dive Resort -->
+            <div class="mb-8">
+                <h3 class="font-bold">3) Sipadan Kapalai Dive Resort</h3>
+                <p class="text-lg mb-4">Chosen Tagline: "Not Just Depth—A Rediscovery of the Ocean’s Pulse"</p>
+                <div class="remark">
+                    <p class="font-medium text-gray-700 mb-2">Remarks:</p>
+                    <p>For 30 years, Sipadan Kapalai Dive Resort has been the beating heart of diving in Semporna—where the ocean’s energy is most alive. Now, we’re claiming our rightful position as the <span class="font-bold">Pulse of Semporna</span> through the powerful concept of the <span class="font-bold">Ocean’s Pulse</span>.</p>
+                </div>
+                <div class="action">
+                    <p class="font-medium text-gray-700 mb-2">Action:</p>
+                    <p>Revised the Tagline</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Second Section: Actions based on the Remarks -->
+        <div class="section-box">
+            <h2 class="text-green-700">Section 2: Actions Based on the Remarks</h2>
+
+            <!-- INBAYU COLLECTION Revised Taglines -->
+            <div class="mb-8 mt-10"> <!-- Added mt-10 for bottom margin before the first point -->
+                <h3>1) INBAYU COLLECTION: Revised Taglines</h3>
+                <ul>
+                    <li>
+                        <h4>a) A Pause in Time, A Lifetime of Memories</h4>
+                        <div class="explanation">
+                            <p>This tagline works because it evokes a sense of timelessness and lasting impact without being geographically specific. "A Pause in Time" suggests a serene escape from daily life, while "A Lifetime of Memories" promises enduring experiences, making it suitable for a brand that might expand to various tranquil destinations.</p>
                         </div>
-                    </div>
-                    <div class="text-center p-4">
-                        <div class="stat-number">5</div>
-                        <div class="text-lg sm:text-xl md:text-2xl font-bold tracking-wider uppercase text-gray-300">COLLECTION Taglines</div>
-                        <p class="mt-2 text-xs sm:text-sm text-gray-400 text-center">analyzed to define the brand's overarching narrative.</p>
-                    </div>
-                </div>
-                <div class="card rounded-lg shadow-2xl p-6 md:p-8 mt-6 md:mt-8">
-                    <h3 class="text-xl md:text-2xl font-bold text-center mb-4">Analysis of INBAYU COLLECTION Taglines</h3>
-                    <p class="text-sm sm:text-base text-left text-gray-400 max-w-2xl mx-auto mb-6">Each tagline for the INBAYU COLLECTION is strategically designed to balance emotional resonance with broad appeal, shaping the overarching brand narrative.</p>
-                    <div class="space-y-4 text-gray-300 text-left text-sm sm:text-base">
-                        <p><strong class="text-[#BC5090]">"Your Story Unfolds, Where Semporna’s Natural Wonders Call"</strong>: This tagline has a strong emotional impact (8/10) by inviting personal narrative. Its broad appeal (7/10) lies in connecting individual journeys with the universal allure of nature, suitable for diverse travelers seeking unique experiences.</p>
-                        <p><strong class="text-[#BC5090]">"Where Every Wave Carries a Story, and Every Sunset, a Myth"</strong>: This tagline excels in emotional impact (8/10), creating a poetic and mystical connection. Its broad appeal (6/10) is slightly more niche, targeting those who appreciate deeper meaning and sensory magic, but still resonates widely through its evocative imagery.</p>
-                        <p><strong class="text-[#BC5090]">"Beyond Your Journey, Craft a Story Worth Telling"</strong>: With a moderate emotional impact (7/10), this tagline focuses on the lasting value of experiences. Its broad appeal (6/10) is geared towards travelers who seek memorable, shareable moments rather than just a destination, making it appealing for curated experiences.</p>
-                        <p><strong class="text-[#BC5090]">"One Journey, a Lifetime of Memories in Semporna"</strong>: This tagline achieves a strong emotional impact (8/10) by emphasizing longevity and significance. Its broad appeal (9/10) is excellent, as the desire for 'lifetime memories' is a universal motivator for all types of travelers, from families to couples and solo adventurers.</p>
-                        <p><strong class="text-[#BC5090]">"Where Extraordinary Finds You"</strong>: This tagline has a moderate emotional impact (6/10), focusing on effortless discovery. Its broad appeal (8/10) is high due to its promise of unexpected magic and ease, particularly attractive to those seeking serenity and pleasant surprises in a luxury or wellness context.</p>
-                    </div>
-                </div>
-            </section>
-
-            <section id="pearl-island" class="mb-12 md:mb-16">
-                 <h2 class="text-2xl sm:text-3xl md:text-4xl font-bold text-center mb-4">Pearl Island</h2>
-                <p class="text-sm sm:text-base text-left text-gray-300 max-w-2xl mx-auto mb-6 md:mb-8">Pearl Island positions itself as an exclusive sanctuary of myth and renewal. Its taglines are introspective, promising transformation and a deep connection to legend.</p>
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8 items-center">
-                     <div class="card rounded-lg shadow-2xl p-6 md:p-8 order-2 md:order-1 h-[520px] sm:h-[600px] lg:h-[700px] flex flex-col justify-center">
-                        <h3 class="text-lg sm:text-xl md:text-2xl font-bold text-center mb-4">Thematic Focus</h3>
-                        <p class="text-xs sm:text-sm text-left text-gray-400 mb-6">The brand's messaging is built on three core pillars. This chart shows the proportional focus of its taglines on the ideas of myth, personal renewal, and exclusive seclusion.</p>
-                        <div class="chart-container h-64 sm:h-80 md:h-96">
-                            <canvas id="pearlDonutChart"></canvas>
+                    </li>
+                    <li>
+                        <h4>b) Journey Once, Memories Forever</h4>
+                        <div class="explanation">
+                            <p>This tagline is concise and powerful. "Journey Once" implies a unique, singular experience, and "Memories Forever" emphasizes the lasting impression. It's versatile enough to apply to any destination within the collection, focusing on the quality and permanence of the guest's experience.</p>
                         </div>
-                    </div>
-                    <div class="card rounded-lg shadow-2xl p-6 md:p-8 order-1 md:order-2 h-[520px] sm:h-[600px] lg:h-[700px] flex flex-col justify-center">
-                         <h3 class="text-lg sm:text-xl md:text-2xl font-bold text-center mb-4">The Guest's Journey</h3>
-                         <p class="text-xs sm:text-sm text-center text-gray-400 mb-6">The taglines suggest a transformative path for every visitor.</p>
-                        <div class="flex flex-col items-center justify-center space-y-3 sm:space-y-4 text-left">
-                            <div class="p-3 sm:p-4 border-2 border-dashed border-[#58508D] rounded-lg w-full max-w-sm">
-                                <div class="text-base sm:text-lg font-bold text-white">1. Encounter the Myth</div>
-                                <p class="text-xs sm:text-sm text-gray-300">Arrive at a hidden sanctuary steeped in legend.</p>
-                            </div>
-                            <div class="text-3xl sm:text-4xl font-black flow-arrow transform rotate-90 md:rotate-0 text-center">→</div>
-                            <div class="p-3 sm:p-4 border-2 border-dashed border-[#BC5090] rounded-lg w-full max-w-sm">
-                                 <div class="text-base sm:text-lg font-bold text-white">2. Live the Experience</div>
-                                <p class="text-xs sm:text-sm text-gray-300">Engage in adventure and find timeless stillness.</p>
-                            </div>
-                             <div class="text-3xl sm:text-4xl font-black flow-arrow transform rotate-90 md:rotate-0 text-center">→</div>
-                            <div class="p-3 sm:p-4 border-2 border-dashed border-[#FF6361] rounded-lg w-full max-w-sm">
-                                 <div class="text-base sm:text-lg font-bold text-white">3. Leave Renewed</div>
-                                <p class="text-xs sm:text-sm text-gray-300">Depart with stories that have rewritten you.</p>
-                            </div>
+                    </li>
+                    <li>
+                        <h4>c) Where Every Journey Becomes a Story</h4>
+                        <div class="explanation">
+                            <p>This tagline highlights the narrative aspect of travel and personal transformation. It suggests that each stay is not just a trip but a meaningful chapter in one's life, creating unique and shareable stories. This concept is adaptable to any location, as every destination offers the potential for new narratives.</p>
                         </div>
-                    </div>
-                </div>
-                <!-- New Bubble Chart for Pearl Island Taglines -->
-                <div class="card rounded-lg shadow-2xl p-6 md:p-8 mt-6 md:mt-8">
-                    <h3 class="text-xl md:text-2xl font-bold text-center mb-4">Pearl Island Tagline Positioning</h3>
-                    <p class="text-sm sm:text-base text-left text-gray-400 max-w-2xl mx-auto mb-8">This chart analyzes Pearl Island's taglines based on their emphasis on Seclusion (X-axis), connection to Myth & Legend (Y-axis), and the prominence of Personal Renewal/Transformation (bubble size).</p>
-                    <div class="chart-container bubble-chart-container">
-                        <canvas id="pearlBubbleChart"></canvas>
-                    </div>
-                    <p class="text-left text-gray-300 max-w-2xl mx-auto mt-6 text-sm sm:text-base">
-                        <strong class="text-[#BC5090]">'A Hidden Sanctuary Where Myths Become Memories'</strong> (magenta bubble) strongly emphasizes both <strong>Seclusion</strong> and <strong>Mythical Connection</strong>, making it ideal for guests seeking an exclusive escape where ancient stories come to life. The moderate size indicates a balanced focus on personal transformation.
-                    </p>
-                    <p class="text-left text-gray-300 max-w-2xl mx-auto mt-4 text-sm sm:text-base">
-                        <strong class="text-[#FF6361]">'The Island Where Stories Rewrite You'</strong> (coral bubble) has a high emphasis on <strong>Personal Renewal/Transformation</strong> (largest bubble), with a slightly lower, but still significant, mythical connection and seclusion. It appeals to those actively seeking profound change and growth through their adventure and experiences on the island.
-                    </p>
-                    <p class="text-left text-gray-300 max-w-2xl mx-auto mt-4 text-sm sm:text-base">
-                        <strong class="text-[#FFA600]">'A Hidden Sanctuary of Myth and Renewal'</strong> (gold bubble) balances <strong>Seclusion</strong> with <strong>Mythical Connection</strong> and a strong emphasis on <strong>Renewal</strong>. This tagline effectively communicates a holistic experience of exclusive retreat, historical depth, and personal rejuvenation, appealing to a broad range of luxury travelers.
-                    </p>
-                </div>
-            </section>
+                    </li>
+                </ul>
+            </div>
 
-            <section id="sipadan-kapalai" class="mb-12 md:mb-16">
-                <h2 class="text-2xl sm:text-3xl md:text-4xl font-bold text-center mb-4">Sipadan Kapalai Dive Resort</h2>
-                <p class="text-sm sm:text-base text-left text-gray-300 max-w-2xl mx-auto mb-6 md:mb-8">This is a brand for the discerning diver and storyteller. The taglines move beyond simple adventure to promise an intimate, almost theatrical, encounter with the ocean's hidden wonders, aligning with what its unique guests seek.</p>
+            <!-- Pearl Island Resort Revised Taglines -->
+            <div class="mb-8">
+                <h3>2) Pearl Island Resort: Translated Taglines</h3>
+                <ul>
+                    <li>
+                        <h4>a) 神话栖息地，回忆的摇篮 (Shénhuà qīxīdì, huíyì de yáolán)</h4>
+                        <div class="explanation">
+                            <p>This translates to "Mythical Habitat, Cradle of Memories." It effectively captures the essence of the resort's connection to the Princess Salamia legend ("Mythical Habitat") and its role in creating cherished experiences ("Cradle of Memories"). The imagery is poetic and aligns well with the magical storytelling concept.</p>
+                        </div>
+                    </li>
+                    <li>
+                        <h4>b) 隐世桃源，化传说为回忆 (Yǐnshì táoyuán, huà chuánshuō wèi huíyì)</h4>
+                        <div class="explanation">
+                            <p>This translates to "Hidden Utopia, Transforming Legends into Memories." This tagline is strong because "Hidden Utopia" (隐世桃源) conveys exclusivity and an idyllic escape, resonating with the "hidden sanctuary" aspect of the original tagline. "Transforming Legends into Memories" directly speaks to the resort's unique offering of bringing the Princess Salamia narrative to life, making it a tangible and unforgettable experience for guests.</p>
+                        </div>
+                    </li>
+                </ul>
+            </div>
 
-                <div class="card rounded-lg shadow-2xl p-6 md:p-8 mb-6 md:mb-8">
-                    <h3 class="text-xl md:text-2xl font-bold text-center mb-4">Key Motivations for Tourists Visiting Semporna</h3>
-                    <p class="text-sm sm:text-base text-left text-gray-400 max-w-2xl mx-auto mb-8">Based on recent tourist feedback and regional analysis, the primary drivers for visitors to Semporna and its surrounding islands like Sipadan Kapalai are deeply rooted in unique natural and cultural experiences, as well as the value offered.</p>
-                    <div class="chart-container">
-                        <canvas id="touristSeekChart"></canvas>
-                    </div>
-                    <p class="text-sm sm:text-base text-left text-gray-300 max-w-2xl mx-auto mt-4">
-                        The data on this chart represents a synthesis of recent tourist reviews and market analysis for Semporna, with scores from 1 (low importance) to 10 (high importance). The high scores for <strong>Diving & Marine Life Excellence</strong> and <strong>Nature, Scenery & Island Exploration</strong> underscore Semporna's global reputation. The strong rating for <strong>Affordable Luxury/Value</strong> highlights a key competitive advantage, while <strong>Adventure & Water Sports</strong> (beyond diving) and <strong>Cultural Experiences & Local Charm</strong> round out the holistic appeal.
-                    </p>
-                </div>
-
-                <div class="card rounded-lg shadow-2xl p-6 md:p-8">
-                    <h3 class="text-xl md:text-2xl font-bold text-center mb-4">Positioning & Appeal Matrix</h3>
-                     <p class="text-sm sm:text-base text-left text-gray-400 max-w-2xl mx-auto mb-8">This chart analyzes the three taglines across multiple dimensions. The horizontal axis represents appeal (from broad to highly niche), the vertical axis indicates the level of luxury conveyed, and the size of each bubble reflects its overall storytelling power.</p>
-                    <div class="chart-container bubble-chart-container">
-                        <canvas id="kapalaiBubbleChart"></canvas>
-                    </div>
-                    <p class="text-left text-gray-300 max-w-2xl mx-auto mt-6 text-sm sm:text-base">
-                        <strong class="text-[#BC5090]">'Not Just Depth—A Rediscovery of the Ocean’s Pulse'</strong> (magenta bubble) is positioned with moderate niche appeal and luxury. It directly taps into the desire for <strong>Diving & Marine Life Excellence</strong> and <strong>Nature, Scenery & Island Exploration</strong>, by promising a profound connection with the underwater world beyond just a basic dive, appealing to those who seek deep immersion.
-                    </p>
-                    <p class="text-left text-gray-300 max-w-2xl mx-auto mt-4 text-sm sm:text-base">
-                        <strong class="text-[#FF6361]">'Beyond Mystery—Where the Ocean’s Wonder Embraces You'</strong> (coral bubble) sits with a broader appeal but a strong luxury feel. It caters to the <strong>Adventure & Water Sports</strong> seekers and those desiring <strong>Nature, Scenery & Island Exploration</strong> by framing encounters with marine life as a welcoming, wondrous experience, perfect for luxury travelers who want awe without austerity.
-                    </p>
-                    <p class="text-left text-gray-300 max-w-2xl mx-auto mt-4 text-sm sm:text-base">
-                        <strong class="text-[#FFA600]">'Sipadan Kapalai: The Hidden Theatre of the Sea'</strong> (gold bubble) has the highest niche appeal and luxury positioning. This tagline is precisely crafted for those who prioritize <strong>Diving & Marine Life Excellence</strong> and <strong>Scenic Beauty & Photography</strong>, inviting them to an exclusive, theatrical display of nature's artistry. It speaks to the desire for unparalleled, high-value experiences that are truly unique to the destination.
-                    </p>
-                </div>
-            </section>
-
-            <section id="conclusion" class="mb-8">
-                <h2 class="text-2xl sm:text-3xl md:text-4xl font-bold text-center mb-4">Strategic Recommendations</h2>
-                <p class="text-sm sm:text-base text-left text-gray-300 max-w-2xl mx-auto mb-8">Based on the analysis, the following taglines are recommended for the INBAYU COLLECTION's overarching brand and for each of its managed resorts, to maximize market impact and ensure authentic brand representation.</p>
-                <div class="overflow-x-auto">
-                    <div class="card rounded-lg shadow-2xl p-4 md:p-6">
-                        <table class="w-full text-left">
-                            <thead class="border-b-2 border-[#58508D]">
-                                <tr>
-                                    <th class="p-2 sm:p-4 text-base sm:text-lg font-bold uppercase text-white">Entity</th>
-                                    <th class="p-2 sm:p-4 text-base sm:text-lg font-bold uppercase text-white">Recommended Tagline</th>
-                                    <th class="p-2 sm:p-4 text-base sm:text-lg font-bold uppercase text-white">Justification</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr class="border-b border-[#58508D]/50">
-                                    <td class="p-2 sm:p-4 font-bold align-top text-sm sm:text-base">INBAYU COLLECTION</td>
-                                    <td class="p-2 sm:p-4 font-semibold text-[#FFA600] align-top text-sm sm:text-base">"One Journey, a Lifetime of Memories in Semporna"</td>
-                                    <td class="p-2 sm:p-4 text-white align-top text-xs sm:text-sm">This tagline offers a strong emotional promise of lasting significance ("a Lifetime of Memories"), appealing to a wide audience seeking profound and memorable travel experiences. Its inclusion of "Semporna" directly links the collection to the renowned destination, fostering top-of-mind-recall and positioning it as the definitive choice for those seeking meaningful journeys in the region.</td>
-                                </tr>
-                                <tr class="border-b border-[#58508D]/50">
-                                    <td class="p-2 sm:p-4 font-bold align-top text-sm sm:text-base">Pearl Island</td>
-                                    <td class="p-2 sm:p-4 font-semibold text-[#FFA600] align-top text-sm sm:text-base">"A Hidden Sanctuary Where Myths Become Memories"</td>
-                                    <td class="p-2 sm:p-4 text-white align-top text-xs sm:text-sm">This tagline creates a powerful emotional promise by inviting guests into a "Hidden Sanctuary" where "Myths Become Memories." It appeals to a discerning audience seeking an exclusive, transformative escape where the magic of ancient stories is personally experienced through the island's landscapes and serene activities. This fosters a deep, unforgettable cultural connection beyond mere observation.</td>
-                                </tr>
-                                <tr>
-                                    <td class="p-2 sm:p-4 font-bold align-top text-sm sm:text-base">Sipadan Kapalai</td>
-                                    <td class="p-2 sm:p-4 font-semibold text-[#FFA600] align-top text-sm sm:text-base">"Sipadan Kapalai: The Hidden Theatre of the Sea"</td>
-                                    <td class="p-2 sm:p-4 text-white align-top text-xs sm:text-sm">This highly distinctive tagline delivers a strong emotional promise of witnessing nature's artistry firsthand, framing each dive as a "front-row seat to evolution’s artistry." It appeals to a niche, passionate audience of photographers, storytellers, and expert divers seeking exclusive and intimate encounters with macro marine life. The "Hidden Theatre" aspect emphasizes both the dramatic spectacles and the privileged access, aligning with the desire for unrivaled, personal underwater experiences.</td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-            </section>
-
-        </main>
+            <!-- Sipadan Kapalai Dive Resort Revised Taglines -->
+            <div class="mb-8">
+                <h3>3) Sipadan Kapalai Dive Resort: Revised Taglines</h3>
+                <ul>
+                    <li>
+                        <h4>a) Not Just a Journey—A Return to the Ocean’s Pulse</h4>
+                        <div class="explanation">
+                            <p>This tagline works by emphasizing a deeper, more profound connection than just a typical trip. "A Return to the Ocean’s Pulse" suggests a natural, almost primal alignment with the marine environment, highlighting the resort's long-standing legacy and intimate relationship with the ocean’s vibrant energy.</p>
+                        </div>
+                    </li>
+                    <li>
+                        <h4>b) Sync Your Soul to the Ocean’s Pulse</h4>
+                        <div class="explanation">
+                            <p>This tagline is highly evocative and speaks to a personal, immersive experience. "Sync Your Soul" conveys a sense of harmony and deep connection, appealing to divers who seek more than just observation but a true integration with the underwater world. It aligns perfectly with the idea of the resort being the "beating heart" of diving.</p>
+                        </div>
+                    </li>
+                    <li>
+                        <h4>c) Where Adventure Meets the Ocean’s Pulse</h4>
+                        <div class="explanation">
+                            <p>This tagline is dynamic and action-oriented. "Where Adventure Meets" appeals to thrill-seekers and explorers, while "the Ocean’s Pulse" grounds it in the unique, vibrant energy of Sipadan Kapalai. It effectively positions the resort as the ultimate destination for exhilarating and deeply connected diving experiences.</p>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
     </div>
-
-    <script>
-        const wrapLabel = (str, maxWidth) => {
-            if (str.length <= maxWidth) {
-                return str;
-            }
-            const words = str.split(' ');
-            const lines = [];
-            let currentLine = '';
-            words.forEach(word => {
-                if ((currentLine + ' ' + word).trim().length > maxWidth) {
-                    lines.push(currentLine.trim());
-                    currentLine = word;
-                } else {
-                    currentLine = (currentLine + ' ' + word).trim();
-                }
-            });
-            if (currentLine) {
-                lines.push(currentLine.trim());
-            }
-            return lines;
-        };
-
-        const tooltipTitleCallback = (tooltipItems) => {
-            const item = tooltipItems[0];
-            let label = item.chart.data.labels[item.dataIndex];
-            if (Array.isArray(label)) {
-              return label.join(' ');
-            } else {
-              return label;
-            }
-        };
-
-        const chartColors = {
-            blue: '#003F5C',
-            purple: '#58508D',
-            magenta: '#BC5090',
-            coral: '#FF6361',
-            gold: '#FFA600',
-            white: '#F9F9F9'
-        };
-
-        const defaultChartOptions = {
-            maintainAspectRatio: false,
-            responsive: true,
-            plugins: {
-                legend: {
-                    labels: {
-                        color: chartColors.white,
-                        font: {
-                            size: 14 // Default font size
-                        },
-                        boxWidth: 20 // Reduce box width to give more space for text
-                    }
-                },
-                tooltip: {
-                    callbacks: {
-                        title: tooltipTitleCallback
-                    }
-                }
-            }
-        };
-
-        new Chart(document.getElementById('radarChart'), {
-            type: 'radar',
-            data: {
-                labels: ['Emotional Resonance', 'Target Appeal', 'Brand Alignment', 'Memorability'],
-                datasets: [
-                    {
-                        label: 'INBAYU COLLECTION',
-                        data: [8, 9, 8, 7],
-                        backgroundColor: 'rgba(255, 99, 97, 0.2)',
-                        borderColor: chartColors.coral,
-                        pointBackgroundColor: chartColors.coral,
-                    },
-                    {
-                        label: 'Pearl Island',
-                        data: [9, 7, 9, 8],
-                        backgroundColor: 'rgba(188, 80, 144, 0.2)',
-                        borderColor: chartColors.magenta,
-                        pointBackgroundColor: chartColors.magenta,
-                    },
-                     {
-                        label: 'Sipadan Kapalai',
-                        data: [8, 8, 10, 9],
-                        backgroundColor: 'rgba(255, 166, 0, 0.2)',
-                        borderColor: chartColors.gold,
-                        pointBackgroundColor: chartColors.gold,
-                    }
-                ]
-            },
-            options: {
-                ...defaultChartOptions,
-                layout: {
-                    padding: 0
-                },
-                scales: {
-                    r: {
-                        angleLines: { color: 'rgba(255, 255, 255, 0.2)' },
-                        grid: { color: 'rgba(255, 255, 255, 0.2)' },
-                        pointLabels: {
-                            color: chartColors.white,
-                            font: { size: 12 }
-                        },
-                        ticks: {
-                            color: chartColors.white,
-                            backdropColor: 'rgba(0, 0, 0, 0.5)',
-                            stepSize: 2
-                        }
-                    }
-                }
-            }
-        });
-
-        new Chart(document.getElementById('inbayuBarChart'), {
-            type: 'bar',
-            data: {
-                labels: [
-                    wrapLabel("Your Story Unfolds, Where Semporna’s Wonders Call", 16),
-                    wrapLabel("Every Wave Carries a Story, Every Sunset, a Myth", 16),
-                    wrapLabel("Beyond Your Journey, Craft a Story Worth Telling", 16),
-                    wrapLabel("One Journey, a Lifetime of Memories in Semporna", 16),
-                    wrapLabel("Where Extraordinary Finds You", 16)
-                ],
-                datasets: [
-                    {
-                        label: 'Emotional Impact',
-                        data: [8, 8, 7, 8, 6],
-                        backgroundColor: chartColors.magenta,
-                        borderColor: chartColors.magenta,
-                        borderWidth: 1
-                    },
-                    {
-                        label: 'Broad Appeal',
-                        data: [7, 6, 6, 9, 8],
-                        backgroundColor: chartColors.gold,
-                        borderColor: chartColors.gold,
-                        borderWidth: 1
-                    }
-                ]
-            },
-            options: {
-                ...defaultChartOptions,
-                scales: {
-                    y: {
-                        beginAtZero: true,
-                        grid: { color: 'rgba(255, 255, 255, 0.1)' },
-                        ticks: { color: chartColors.white }
-                    },
-                    x: {
-                        grid: { color: 'rgba(255, 255, 255, 0.1)' },
-                        ticks: { color: chartColors.white }
-                    }
-                },
-                indexAxis: 'y',
-                plugins: {
-                    legend: {
-                        labels: {
-                            color: chartColors.white,
-                            font: {
-                                size: 14
-                            },
-                            boxWidth: 20,
-                            padding: 5
-                        },
-                        align: 'start'
-                    },
-                    tooltip: {
-                        callbacks: {
-                            title: tooltipTitleCallback
-                        }
-                    }
-                }
-            }
-        });
-
-        new Chart(document.getElementById('pearlDonutChart'), {
-            type: 'doughnut',
-            data: {
-                labels: ['Myth & Legend', 'Renewal & Transformation', 'Seclusion & Exclusivity'],
-                datasets: [{
-                    data: [40, 35, 25],
-                    backgroundColor: [chartColors.purple, chartColors.magenta, chartColors.coral],
-                    borderColor: '#003F5C',
-                    borderWidth: 4
-                }]
-            },
-            options: { ...defaultChartOptions }
-        });
-
-        new Chart(document.getElementById('pearlBubbleChart'), {
-            type: 'bubble',
-            data: {
-                datasets: [
-                    {
-                        label: wrapLabel('A Hidden Sanctuary Where Myths Become Memories', 35),
-                        data: [{ x: 9, y: 9, r: 25 }], // High seclusion, high myth, medium renewal
-                        backgroundColor: 'rgba(188, 80, 144, 0.7)',
-                        borderColor: chartColors.magenta
-                    },
-                    {
-                        label: wrapLabel('The Island Where Stories Rewrite You', 35),
-                        data: [{ x: 5, y: 7, r: 35 }], // Moderate seclusion, moderate myth, high renewal
-                        backgroundColor: 'rgba(255, 99, 97, 0.7)',
-                        borderColor: chartColors.coral
-                    },
-                    {
-                        label: wrapLabel('A Hidden Sanctuary of Myth and Renewal', 35),
-                        data: [{ x: 8, y: 8.5, r: 30 }], // High seclusion, high myth, high renewal
-                        backgroundColor: 'rgba(255, 166, 0, 0.7)',
-                        borderColor: chartColors.gold
-                    }
-                ]
-            },
-            options: {
-                ...defaultChartOptions,
-                plugins: {
-                    legend: {
-                        display: false
-                    },
-                    tooltip: {
-                        callbacks: {
-                            title: tooltipTitleCallback
-                        }
-                    }
-                },
-                scales: {
-                    x: {
-                        title: {
-                            display: true,
-                            text: 'Seclusion Emphasis (Low to High)',
-                            color: chartColors.white
-                        },
-                        grid: { color: 'rgba(255, 255, 255, 0.1)' },
-                        ticks: { color: chartColors.white },
-                        min: 0,
-                        max: 10
-                    },
-                    y: {
-                        title: {
-                            display: true,
-                            text: 'Mythical Connection (Low to High)',
-                            color: chartColors.white
-                        },
-                        grid: { color: 'rgba(255, 255, 255, 0.1)' },
-                        ticks: { color: chartColors.white },
-                        min: 0,
-                        max: 10
-                    }
-                }
-            }
-        });
-
-        new Chart(document.getElementById('touristSeekChart'), {
-            type: 'bar',
-            data: {
-                labels: [
-                    wrapLabel('Diving & Marine Life Excellence', 16),
-                    wrapLabel('Nature, Scenery & Island Exploration', 16),
-                    wrapLabel('Adventure & Water Sports', 16),
-                    wrapLabel('Relaxation & Bespoke Luxury', 16),
-                    wrapLabel('Cultural Experiences & Local Charm', 16),
-                    wrapLabel('Affordable Luxury/Value', 16),
-                    wrapLabel('Photography & Scenic Beauty', 16),
-                    wrapLabel('Romance & Honeymoon Potential', 16),
-                    wrapLabel('Conservation & Eco-Tourism', 16),
-                    wrapLabel('Accessibility & Convenience', 16)
-                ],
-                datasets: [
-                    {
-                        label: 'Tourist Importance Rating (1-10)',
-                        data: [10, 9, 8.5, 8.5, 8, 9, 9.5, 8.5, 7, 6], // Updated data based on your provided research
-                        backgroundColor: [
-                            'rgba(255, 166, 0, 0.7)', // Gold
-                            'rgba(188, 80, 144, 0.7)', // Magenta
-                            'rgba(255, 99, 97, 0.7)', // Coral
-                            'rgba(90, 80, 141, 0.7)', // Purple
-                            'rgba(0, 63, 92, 0.7)', // Dark Blue
-                            'rgba(255, 166, 0, 0.5)', // Gold lighter
-                            'rgba(188, 80, 144, 0.5)', // Magenta lighter
-                            'rgba(255, 99, 97, 0.5)', // Coral lighter
-                            'rgba(90, 80, 141, 0.5)', // Purple lighter
-                            'rgba(0, 63, 92, 0.5)' // Dark Blue lighter
-                        ],
-                        borderColor: [
-                            chartColors.gold,
-                            chartColors.magenta,
-                            chartColors.coral,
-                            chartColors.purple,
-                            chartColors.blue,
-                            chartColors.gold,
-                            chartColors.magenta,
-                            chartColors.coral,
-                            chartColors.purple,
-                            chartColors.blue
-                        ],
-                        borderWidth: 1
-                    }
-                ]
-            },
-            options: {
-                ...defaultChartOptions,
-                scales: {
-                    y: {
-                        beginAtZero: true,
-                        grid: { color: 'rgba(255, 255, 255, 0.1)' },
-                        ticks: { color: chartColors.white, min: 0, max: 10 }
-                    },
-                    x: {
-                        grid: { color: 'rgba(255, 255, 255, 0.1)' },
-                        ticks: { color: chartColors.white }
-                    }
-                }
-            }
-        });
-
-        new Chart(document.getElementById('kapalaiBubbleChart'), {
-            type: 'bubble',
-            data: {
-                datasets: [
-                    {
-                        label: wrapLabel('Not Just Depth—A Rediscovery of the Ocean’s Pulse', 35),
-                        data: [{ x: 7, y: 6.5, r: 25 }],
-                        backgroundColor: 'rgba(188, 80, 144, 0.7)',
-                        borderColor: chartColors.magenta
-                    },
-                    {
-                        label: wrapLabel('Beyond Mystery—Where the Ocean’s Wonder Embraces You', 35),
-                        data: [{ x: 5, y: 7.5, r: 20 }],
-                        backgroundColor: 'rgba(255, 99, 97, 0.7)',
-                        borderColor: chartColors.coral
-                    },
-                    {
-                        label: wrapLabel('Sipadan Kapalai: The Hidden Theatre of the Sea', 35),
-                        data: [{ x: 8, y: 8, r: 30 }],
-                        backgroundColor: 'rgba(255, 166, 0, 0.7)',
-                        borderColor: chartColors.gold
-                    }
-                ]
-            },
-            options: {
-                 ...defaultChartOptions,
-                 plugins: {
-                     legend: {
-                         display: false // Set display to false to remove labels
-                     },
-                     tooltip: {
-                         callbacks: {
-                             title: tooltipTitleCallback
-                         }
-                     }
-                 },
-                 scales: {
-                    x: {
-                        title: {
-                            display: true,
-                            text: 'Niche Appeal (Broad to Specific)',
-                            color: chartColors.white
-                        },
-                        grid: { color: 'rgba(255, 255, 255, 0.1)' },
-                        ticks: { color: chartColors.white },
-                        min: 0,
-                        max: 10
-                    },
-                    y: {
-                         title: {
-                            display: true,
-                            text: 'Luxury Feel',
-                            color: chartColors.white
-                        },
-                        grid: { color: 'rgba(255, 255, 255, 0.1)' },
-                        ticks: { color: chartColors.white },
-                        min: 0,
-                        max: 10
-                    }
-                }
-            }
-        });
-    </script>
 </body>
 </html>
+<!DOCTYPE html>
