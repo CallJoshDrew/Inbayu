@@ -14,12 +14,14 @@
             color: #333333; /* Darker text for better readability */
             line-height: 1.8; /* Improved line height for readability */
             font-size: 1.1rem; /* Increased base font size */
-            /* Removed max-width, margin, and padding from body */
         }
         .container {
-            max-width: 1000px; /* Max width for the entire content */
-            margin: 2.5rem auto; /* Center the container with vertical margin */
-            /* No padding here, as section-box will handle its own margins */
+            max-width: 1000px; /* Slightly wider container */
+            margin: 2.5rem auto; /* More vertical margin */
+            padding: 2rem; /* Increased padding */
+            background-color: #ffffff;
+            border-radius: 1rem; /* More pronounced rounded corners */
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08); /* Softer, more professional shadow */
         }
         h1, h2, h3, h4 {
             color: #2d3748; /* Deep charcoal for headings */
@@ -27,14 +29,14 @@
             line-height: 1.3;
         }
         h1 {
-            font-size: 4rem; /* Increased H1 font size to make it much bigger */
+            font-size: 3.2rem; /* Increased H1 font size */
             font-weight: 800; /* Made H1 bolder */
             text-align: center;
             margin-bottom: 3rem; /* Increased bottom margin for H1 */
             letter-spacing: -0.02em; /* Slightly tighter letter spacing */
         }
         h2 {
-            font-size: 2.4rem; /* Larger section titles (though now only one main flow) */
+            font-size: 2.4rem; /* Larger section titles */
             font-weight: 600;
             margin-top: 3rem; /* More space above new sections */
             padding-bottom: 0.75rem;
@@ -54,15 +56,12 @@
             color: #4a5568;
         }
         .section-box {
-            background-color: #ffffff;
-            border-radius: 1rem;
-            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+            background-color: #fdfdfe; /* Very subtle off-white for section boxes */
             border: 1px solid #e2e8f0; /* Light, subtle border */
-            padding: 0.8rem 2rem; /* Reduced top padding to 0.8rem */
-            margin-top: 5px; /* Added 5px top margin as requested */
-            margin-bottom: 2.5rem; /* Existing bottom margin */
-            margin-left: 5px; /* Added 5px left margin */
-            margin-right: 5px; /* Added 5px right margin */
+            border-radius: 0.75rem;
+            padding: 2rem;
+            margin-bottom: 2.5rem;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05); /* Very light inner shadow */
         }
         .remark, .action, .explanation {
             background-color: #e0f2fe; /* Soft light blue for remarks/actions */
@@ -76,19 +75,6 @@
         .explanation {
             background-color: #e6ffed; /* Soft light green for explanations */
             border-left-color: #48bb78; /* Green accent border */
-        }
-        /* New style for the revised tagline headings */
-        .revised-taglines-heading {
-            display: inline-block; /* Changed to inline-block to wrap content */
-            background-color: #e6ffed; /* Soft light green, same as explanation */
-            border-left: 5px solid #48bb78; /* Green accent border, same as explanation */
-            padding: 0.8rem 1.2rem; /* Adjusted padding to fit heading better */
-            margin-top: 2rem; /* Keep existing margin-top for h3 */
-            margin-bottom: 1.2rem; /* Keep existing margin-bottom for h3 */
-            border-radius: 0.5rem; /* Rounded corners */
-            color: #2d3748; /* Darker text for better contrast on green */
-            font-size: 1rem; /* Adjusted font size to 1rem */
-            font-weight: bold; /* Made bold as requested */
         }
         ul {
             list-style-type: none; /* Ensure default bullet points are removed */
@@ -109,10 +95,12 @@
     <div class="container">
         <h1>Marketing Tagline Research Report</h1>
 
-        <!-- Combined Section for all points -->
+        <!-- First Section: Recap of our Previous Meeting -->
         <div class="section-box">
+            <h2 class="text-blue-700">Section 1: Recap of Our Previous Meeting</h2>
+
             <!-- INBAYU COLLECTION -->
-            <div class="mb-8 mt-10">
+            <div class="mb-8 mt-10"> <!-- Added mt-10 for bottom margin before the first point -->
                 <h3 class="font-bold">1) INBAYU COLLECTION</h3>
                 <p class="text-lg mb-4">Chosen Tagline: "One Journey, a Lifetime of Memories in Semporna"</p>
                 <div class="remark">
@@ -123,23 +111,6 @@
                     <p class="font-medium text-gray-700 mb-2">Action:</p>
                     <p>Revise Tagline without the word Semporna</p>
                 </div>
-
-                <!-- INBAYU COLLECTION Revised Taglines (moved from Section 2) -->
-                <h3 class="revised-taglines-heading">INBAYU COLLECTION: Revised Taglines</h3>
-                <ul>
-                    <li>
-                        <h4>a) A Pause in Time, A Lifetime of Memories</h4>
-                        <div class="explanation">
-                            <p>This tagline works because it evokes a sense of timelessness and lasting impact without being geographically specific. "A Pause in Time" suggests a serene escape from daily life, while "A Lifetime of Memories" promises enduring experiences, making it suitable for a brand that might expand to various tranquil destinations.</p>
-                        </div>
-                    </li>
-                    <li>
-                        <h4>b) A Journey, A Lifetime of Memories</h4>
-                        <div class="explanation">
-                            <p>This tagline is concise and powerful. "A Journey" implies a unique experience, and "A Lifetime of Memories" emphasizes the lasting impression. It's versatile enough to apply to any destination within the collection, focusing on the quality and permanence of the guest's experience.</p>
-                        </div>
-                    </li>
-                </ul>
             </div>
 
             <!-- Pearl Island Resort -->
@@ -154,25 +125,6 @@
                     <p class="font-medium text-gray-700 mb-2">Action:</p>
                     <p>Translate the chosen tagline to suitable Chinese words</p>
                 </div>
-
-                <!-- Pearl Island Resort Translated Taglines (moved from Section 2) -->
-                <h3 class="revised-taglines-heading">Pearl Island Resort: Translated Taglines</h3>
-                <ul>
-                    <li>
-                        <h4>a) 传说秘境 · 铭刻于心</h4>
-                        <div class="explanation">
-                            <p><strong>Meaning:</strong> "Legendary Secret Realm · Engraved in the Heart."</p>
-                            <p>This tagline evokes a sense of discovery and profound emotional connection. "Legendary Secret Realm" (传说秘境) highlights the resort's unique, almost mythical, and exclusive allure, aligning with the Princess Salamia narrative. "Engraved in the Heart" (铭刻于心) promises an unforgettable experience that leaves a lasting emotional imprint, suggesting that memories made here are deeply personal and cherished.</p>
-                        </div>
-                    </li>
-                    <li>
-                        <h4>b) 隐世仙境 · 传说成忆</h4>
-                        <div class="explanation">
-                            <p><strong>Meaning:</strong> "Hidden Immortal Realm · Legends Become Memories."</p>
-                            <p>This tagline beautifully captures the resort's enchanting and transformative essence. "Hidden Immortal Realm" (隐世仙境) conveys an exclusive, ethereal, and idyllic escape, perfectly matching the "hidden sanctuary" and fairy-tale aspects of the resort's story. "Legends Become Memories" (传说成忆) directly communicates the unique value proposition: guests don't just hear stories, they live them, turning ancient folklore into personal, tangible recollections.</p>
-                        </div>
-                    </li>
-                </ul>
             </div>
 
             <!-- Sipadan Kapalai Dive Resort -->
@@ -187,20 +139,77 @@
                     <p class="font-medium text-gray-700 mb-2">Action:</p>
                     <p>Revised the Tagline</p>
                 </div>
+            </div>
+        </div>
 
-                <!-- Sipadan Kapalai Dive Resort Revised Taglines (moved from Section 2) -->
-                <h3 class="revised-taglines-heading">Sipadan Kapalai Dive Resort: Revised Taglines</h3>
+        <!-- Second Section: Actions based on the Remarks -->
+        <div class="section-box">
+            <h2 class="text-green-700">Section 2: Actions Based on the Remarks</h2>
+
+            <!-- INBAYU COLLECTION Revised Taglines -->
+            <div class="mb-8 mt-10"> <!-- Added mt-10 for bottom margin before the first point -->
+                <h3>1) INBAYU COLLECTION: Revised Taglines</h3>
                 <ul>
                     <li>
-                        <h4>a) A Return to the Ocean’s Pulse</h4>
+                        <h4>a) A Pause in Time, A Lifetime of Memories</h4>
+                        <div class="explanation">
+                            <p>This tagline works because it evokes a sense of timelessness and lasting impact without being geographically specific. "A Pause in Time" suggests a serene escape from daily life, while "A Lifetime of Memories" promises enduring experiences, making it suitable for a brand that might expand to various tranquil destinations.</p>
+                        </div>
+                    </li>
+                    <li>
+                        <h4>b) Journey Once, Memories Forever</h4>
+                        <div class="explanation">
+                            <p>This tagline is concise and powerful. "Journey Once" implies a unique, singular experience, and "Memories Forever" emphasizes the lasting impression. It's versatile enough to apply to any destination within the collection, focusing on the quality and permanence of the guest's experience.</p>
+                        </div>
+                    </li>
+                    <li>
+                        <h4>c) Where Every Journey Becomes a Story</h4>
+                        <div class="explanation">
+                            <p>This tagline highlights the narrative aspect of travel and personal transformation. It suggests that each stay is not just a trip but a meaningful chapter in one's life, creating unique and shareable stories. This concept is adaptable to any location, as every destination offers the potential for new narratives.</p>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+
+            <!-- Pearl Island Resort Revised Taglines -->
+            <div class="mb-8">
+                <h3>2) Pearl Island Resort: Translated Taglines</h3>
+                <ul>
+                    <li>
+                        <h4>a) 神话栖息地，回忆的摇篮 (Shénhuà qīxīdì, huíyì de yáolán)</h4>
+                        <div class="explanation">
+                            <p>This translates to "Mythical Habitat, Cradle of Memories." It effectively captures the essence of the resort's connection to the Princess Salamia legend ("Mythical Habitat") and its role in creating cherished experiences ("Cradle of Memories"). The imagery is poetic and aligns well with the magical storytelling concept.</p>
+                        </div>
+                    </li>
+                    <li>
+                        <h4>b) 隐世桃源，化传说为回忆 (Yǐnshì táoyuán, huà chuánshuō wèi huíyì)</h4>
+                        <div class="explanation">
+                            <p>This translates to "Hidden Utopia, Transforming Legends into Memories." This tagline is strong because "Hidden Utopia" (隐世桃源) conveys exclusivity and an idyllic escape, resonating with the "hidden sanctuary" aspect of the original tagline. "Transforming Legends into Memories" directly speaks to the resort's unique offering of bringing the Princess Salamia narrative to life, making it a tangible and unforgettable experience for guests.</p>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+
+            <!-- Sipadan Kapalai Dive Resort Revised Taglines -->
+            <div class="mb-8">
+                <h3>3) Sipadan Kapalai Dive Resort: Revised Taglines</h3>
+                <ul>
+                    <li>
+                        <h4>a) Not Just a Journey—A Return to the Ocean’s Pulse</h4>
                         <div class="explanation">
                             <p>This tagline works by emphasizing a deeper, more profound connection than just a typical trip. "A Return to the Ocean’s Pulse" suggests a natural, almost primal alignment with the marine environment, highlighting the resort's long-standing legacy and intimate relationship with the ocean’s vibrant energy.</p>
                         </div>
                     </li>
                     <li>
-                        <h4>b) Immerse Your Soul to the Ocean’s Pulse</h4>
+                        <h4>b) Sync Your Soul to the Ocean’s Pulse</h4>
                         <div class="explanation">
-                            <p>This tagline is highly evocative and speaks to a personal, immersive experience. "Immerse Your Soul" conveys a sense of harmony and deep connection, appealing to divers who seek more than just observation but a true integration with the underwater world. It aligns perfectly with the idea of the resort being the "beating heart" of diving.</p>
+                            <p>This tagline is highly evocative and speaks to a personal, immersive experience. "Sync Your Soul" conveys a sense of harmony and deep connection, appealing to divers who seek more than just observation but a true integration with the underwater world. It aligns perfectly with the idea of the resort being the "beating heart" of diving.</p>
+                        </div>
+                    </li>
+                    <li>
+                        <h4>c) Where Adventure Meets the Ocean’s Pulse</h4>
+                        <div class="explanation">
+                            <p>This tagline is dynamic and action-oriented. "Where Adventure Meets" appeals to thrill-seekers and explorers, while "the Ocean’s Pulse" grounds it in the unique, vibrant energy of Sipadan Kapalai. It effectively positions the resort as the ultimate destination for exhilarating and deeply connected diving experiences.</p>
                         </div>
                     </li>
                 </ul>
@@ -209,3 +218,4 @@
     </div>
 </body>
 </html>
+<!DOCTYPE html>
